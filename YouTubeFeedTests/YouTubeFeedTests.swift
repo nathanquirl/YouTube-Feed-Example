@@ -16,6 +16,8 @@ class YouTubeFeedTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        // Setup an example test feed using an embedded json file which simulates a feed download
+        // This is to isolate associated tests from network conditions
         let testBundle = Bundle(for: type(of: self))
         let url = testBundle.url(forResource:"test-feed", withExtension: "json")
         
@@ -74,6 +76,58 @@ class YouTubeFeedTests: XCTestCase {
         }
         
         XCTAssert(decodedFeed.items?.count != 0)
+    }
+    
+    func testVideoAccess() {
+
+        guard let decodedFeed = try? JSONDecoder().decode(Feed.self, from: exampleFeed!) else {
+            XCTFail()
+            return;
+        }
+        
+        XCTAssert(decodedFeed.items != nil)
+        
+        // Inject our test feed to avoid a network request here; We just want to
+        // proper handling of the accessor methods here
+        let feed = ContentFeed()
+        feed.contentFeed = decodedFeed
+        
+        let videoCount = feed.videoCount()
+        
+        for i in 0..<videoCount {
+            let video = feed.video(atIndex: i)
+            
+            XCTAssert(video != nil)
+        }
+    }
+    
+    func testAPIKey() {
+        let feed = ContentFeed()
+        
+        let apiKey = feed.getAPIKey()
+        
+        // API key should be specified prior to using REST API
+        // Obtain developer key through Google Developer Console
+        XCTAssert(!apiKey.isEmpty)
+    }
+    
+    func testChannelKey() {
+        let feed = ContentFeed()
+        
+        let channel = feed.getChannelKey()
+        
+        // Channel key should be specified prior to using REST API
+        XCTAssert(!channel.isEmpty)
+    }
+    
+    func testChannelNetworkLoad() {
+        // Test valid network request
+         let feed = ContentFeed()
+        
+        // Requires valid network connection during testing
+        feed.loadVideoFeed { (error) in
+            XCTAssert(error == nil, "Test failed due to network error")
+        }
     }
     
     func measureFeedParsing() {
