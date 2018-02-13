@@ -20,13 +20,23 @@ class ContentFeed: NSObject {
     
     // MARK: - Constants
     
+    // Default key for locating the API key from the main app bundle
+    // This value should be set in the plist for the build target and is required for
+    // using the YouTube REST API
     let feedBundleKey = "YouTube API Key"
+    
+    // Example channel link for displaying a video feed;
+    // This can be changed to display a different channel feed
     let defaultChannelKey = "UCjnYk44Aj9E634TPucpIXnQ"
     
     // MARK: - Properties
     
+    // Once a feed has been successfully loaded, it is cached into this property
     var contentFeed: Feed = Feed()
     
+    // Generic method to provide the YouTube API key for REST calls. This can be overridden
+    // to provide alternate methods for retrieving the key. ie. from a server
+    // The default implementation pulls the key from the main bundle plist
     func getAPIKey() -> String {
 
         // Ideally, this would be retrieved from a server but is pulled from the bundle for now
@@ -36,6 +46,8 @@ class ContentFeed: NSObject {
             }
         }
         
+        // If the key is not found, you will need to register one through the Google developer console;
+        // Add the key to the main bundle plist for the feedBundleKey property
         print("API Key not found; Returning empty value: (Did you remember to set the key?)")
         
         return ""
@@ -47,10 +59,17 @@ class ContentFeed: NSObject {
         return defaultChannelKey
     }
     
+    // Format a REST API request for retrieving a list of recent videos using
+    // the specified channel
+    // Parameters:
+    // channel: - unique id used as a resource locater for a channel feed.
+    //
     func formatChannelRequest(channel: String) -> String {
         
+        // An API key is required for this REST call
         let key = getAPIKey()
-        
+
+        // Format a REST call for retrieving a list of content from a channel
         return "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=" +
             channel + "&order=date&type=video&key=" + key
     }
@@ -63,8 +82,15 @@ class ContentFeed: NSObject {
         return contentFeed.items?[atIndex]
     }
     
+    // Performs rest API call to retrieve recent videos using the current
+    // channel key
+    // Parameters:
+    // completion: - completion block called after asynchronous loading
+    //               Passes non nil error value if load was unsuccessful
+    //
     func loadVideoFeed(completion: @escaping (Error?) -> Void) {
 
+        // Get formatted REST API call as a string
         let formattedURL = formatChannelRequest(channel: getChannelKey())
         
         guard let url = URL(string: formattedURL) else {
@@ -89,6 +115,7 @@ class ContentFeed: NSObject {
                 return;
             }
             
+            // Decode the feed to a structure supporting the Codable JSON mapping protocol
             guard let feed = try? JSONDecoder().decode(Feed.self, from: data) else {
                 completion(ContentFeedError.invalidFormat)
                 return;
@@ -99,6 +126,7 @@ class ContentFeed: NSObject {
             completion(nil)
         })
         
+        // Start the request
         task.resume()
     }
 }

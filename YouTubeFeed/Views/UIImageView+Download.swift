@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIImageView {
+    // Convenience method for simplifying asyncronous image loading
     public func download(url: URL) {
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
@@ -19,6 +20,7 @@ extension UIImageView {
             }
             
             if let data = data {
+                // Must be called on the main thread to avoid locking the UI
                 DispatchQueue.main.async {
                     self.image = UIImage(data: data)
                 }

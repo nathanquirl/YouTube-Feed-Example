@@ -12,11 +12,16 @@ class FeedViewController: UITableViewController {
     
     // MARK: - Constants
     
+    // Default cell identifier for video feed cells
     let feedCellIdentifier = "video-feed-cell"
+    
+    // Default row cell height used for displaying video feed cells
     let rowCellHeight: CGFloat = 85.0
 
     // MARK: - Properties
     
+    // This is used to process and retrieve a YouTube channel feed
+    // Performs a aynchronous REST API call internally
     let contentFeed : ContentFeed = ContentFeed();
     
     // MARK: - Startup / Initialization
@@ -32,6 +37,7 @@ class FeedViewController: UITableViewController {
         // Table view footer not needed for this view
         tableView.tableFooterView = UIView(frame: .zero)
         
+        // Performs asynchronous REST API call to load a YouTube content feed
         contentFeed.loadVideoFeed { (error) in
             
             if (error != nil) {

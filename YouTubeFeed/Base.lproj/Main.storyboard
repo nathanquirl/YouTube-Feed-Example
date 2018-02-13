@@ -77,21 +77,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nrd-0h-xLc">
-                                <rect key="frame" x="16" y="95" width="343" height="258"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Nrd-0h-xLc" secondAttribute="height" multiplier="343:258" id="L0S-RW-41g"/>
-                                </constraints>
-                                <viewLayoutGuide key="safeArea" id="log-hL-rrd"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glQ-Ri-9zh">
-                                <rect key="frame" x="16" y="442" width="343" height="205"/>
+                                <rect key="frame" x="16" y="378" width="343" height="269"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lg8-HT-bWz">
+                                <rect key="frame" x="16" y="95" width="343" height="194"/>
+                                <color key="backgroundColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Lg8-HT-bWz" secondAttribute="height" multiplier="343:194" id="JXY-9E-uA4"/>
+                                </constraints>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDr-Ve-h8K">
-                                <rect key="frame" x="16" y="361" width="343" height="73"/>
+                                <rect key="frame" x="16" y="297" width="343" height="73"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="73" id="cH9-hU-0BB"/>
                                 </constraints>
@@ -102,23 +106,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Nrd-0h-xLc" firstAttribute="leading" secondItem="TLM-HX-sxA" secondAttribute="leading" constant="16" id="56e-tz-ZuS"/>
-                            <constraint firstItem="Nrd-0h-xLc" firstAttribute="top" secondItem="TLM-HX-sxA" secondAttribute="top" constant="31" id="7Jq-KG-foS"/>
+                            <constraint firstItem="Lg8-HT-bWz" firstAttribute="top" secondItem="TLM-HX-sxA" secondAttribute="top" constant="31" id="Dud-Gy-XOI"/>
                             <constraint firstItem="glQ-Ri-9zh" firstAttribute="top" secondItem="xDr-Ve-h8K" secondAttribute="bottom" constant="8" id="KNb-W4-xG4"/>
+                            <constraint firstItem="Lg8-HT-bWz" firstAttribute="leading" secondItem="TLM-HX-sxA" secondAttribute="leading" constant="16" id="XD7-pE-Uz8"/>
                             <constraint firstItem="TLM-HX-sxA" firstAttribute="trailing" secondItem="glQ-Ri-9zh" secondAttribute="trailing" constant="16" id="aaD-Sf-58q"/>
                             <constraint firstItem="xDr-Ve-h8K" firstAttribute="leading" secondItem="TLM-HX-sxA" secondAttribute="leading" constant="16" id="kC6-3l-dH6"/>
                             <constraint firstItem="TLM-HX-sxA" firstAttribute="bottom" secondItem="glQ-Ri-9zh" secondAttribute="bottom" constant="20" id="n0Z-92-EP8"/>
                             <constraint firstItem="glQ-Ri-9zh" firstAttribute="leading" secondItem="TLM-HX-sxA" secondAttribute="leading" constant="16" id="smI-Rh-XPH"/>
                             <constraint firstItem="TLM-HX-sxA" firstAttribute="trailing" secondItem="xDr-Ve-h8K" secondAttribute="trailing" constant="16" id="tNt-7W-xAU"/>
-                            <constraint firstItem="xDr-Ve-h8K" firstAttribute="top" secondItem="Nrd-0h-xLc" secondAttribute="bottom" constant="8" id="vxB-B9-RtX"/>
-                            <constraint firstItem="TLM-HX-sxA" firstAttribute="trailing" secondItem="Nrd-0h-xLc" secondAttribute="trailing" constant="16" id="ySX-5i-AOA"/>
+                            <constraint firstItem="TLM-HX-sxA" firstAttribute="trailing" secondItem="Lg8-HT-bWz" secondAttribute="trailing" constant="16" id="tQ1-t2-nI3"/>
+                            <constraint firstItem="xDr-Ve-h8K" firstAttribute="top" secondItem="Lg8-HT-bWz" secondAttribute="bottom" constant="8" id="uMi-ru-23T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TLM-HX-sxA"/>
                     </view>
                     <connections>
                         <outlet property="videoDescriptionLabel" destination="glQ-Ri-9zh" id="pgM-SQ-S3G"/>
-                        <outlet property="videoPosterImageView" destination="Nrd-0h-xLc" id="Sbm-3I-Xjb"/>
                         <outlet property="videoTitleLabel" destination="xDr-Ve-h8K" id="llG-hW-NYB"/>
+                        <outlet property="videoWebView" destination="Lg8-HT-bWz" id="jcF-ZN-mQf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JoD-X5-kbi" userLabel="First Responder" sceneMemberID="firstResponder"/>

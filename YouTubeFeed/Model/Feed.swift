@@ -9,5 +9,6 @@
 import UIKit
 
 struct Feed: Codable {
+    // Contains detail information and resource links for content and associated thumbnails
     var items: [Video]?
 }
