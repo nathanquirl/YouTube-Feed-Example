@@ -120,16 +120,6 @@ class YouTubeFeedTests: XCTestCase {
         XCTAssert(!channel.isEmpty)
     }
     
-    func testChannelNetworkLoad() {
-        // Test valid network request
-         let feed = ContentFeed()
-        
-        // Requires valid network connection during testing
-        feed.loadVideoFeed { (error) in
-            XCTAssert(error == nil, "Test failed due to network error")
-        }
-    }
-    
     func measureFeedParsing() {
         self.measure {
             _ = try? JSONDecoder().decode(Feed.self, from: exampleFeed!)
