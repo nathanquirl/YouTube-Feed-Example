@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>YouTube API Key</key>
-	<string>AIzaSyBq4Cg2nXIj9M79yQluYU0aJOWBoX0g5Xk</string>
+	<string>YOUR API KEY HERE</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
