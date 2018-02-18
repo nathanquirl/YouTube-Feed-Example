@@ -11,8 +11,8 @@ import WebKit
 
 class VideoDetailViewController: UIViewController {
 
-    // Embeds YouTube video content using formatted html
-    @IBOutlet var videoWebView: WKWebView!
+    // Accepts a YouTube video id and plays it within the view
+    @IBOutlet var playerView: YouTubePlayerView!
     
     // Displays video summary; Info may be truncated from feed
     @IBOutlet var videoDescriptionLabel: UILabel!
@@ -28,17 +28,12 @@ class VideoDetailViewController: UIViewController {
 
         if let video = videoContentInfo {
             
+            // Setup detail properties from video instance
             videoTitleLabel.text = video.title()
             videoDescriptionLabel.text = video.videoDescription()
             
-            // We want to avoid a blank screen while loading so we setup a default
-            // color for the WebView while it loads the embedded content
-            videoWebView.backgroundColor = UIColor.black
-            videoWebView.scrollView.backgroundColor = UIColor.black
-
-            // Retrieves the formatted HTML code for embedding a YouTube video in a WebView
-            if let embedCode = video.videoEmbedCode() {
-                videoWebView.loadHTMLString(embedCode, baseURL: nil)
+            if let videoId = video.id?.videoId {
+                playerView.loadVideoID(videoId)
             }
         }
     }
