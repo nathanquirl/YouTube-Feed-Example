@@ -27,7 +27,7 @@ class ContentFeed: NSObject {
     
     // Example channel link for displaying a video feed;
     // This can be changed to display a different channel feed
-    let defaultChannelKey = "UCjnYk44Aj9E634TPucpIXnQ"
+    let defaultChannelKey = "UCz35fFb-aMFu5f-V6D-065w" // UCjnYk44Aj9E634TPucpIXnQ
     
     // MARK: - Properties
     
@@ -71,7 +71,7 @@ class ContentFeed: NSObject {
 
         // Format a REST call for retrieving a list of content from a channel
         return "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=" +
-            channel + "&order=date&type=video&key=" + key
+            channel + "&order=date&type=video&maxResults=30&key=" + key
     }
     
     func videoCount() -> Int {
