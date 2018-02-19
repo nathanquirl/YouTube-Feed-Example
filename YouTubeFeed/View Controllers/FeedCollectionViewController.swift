@@ -10,8 +10,6 @@ import UIKit
 import CollectionViewSlantedLayout
 
 private let reuseIdentifier = "poster-cell"
-private let yOffsetSpeed: CGFloat = 50.0
-private let xOffsetSpeed: CGFloat = 40.0
 
 class FeedCollectionViewController: UICollectionViewController {
 
@@ -24,25 +22,22 @@ class FeedCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         collectionView?.reloadData()
         collectionView?.collectionViewLayout.invalidateLayout()
     }
-    
+
     func setupCollectionView() {
         self.collectionView?.collectionViewLayout = slantedLayout
         
         // These settings affect the parallax effect when scrolling
-        slantedLayout.isFirstCellExcluded = true
-        slantedLayout.isLastCellExcluded = true
         slantedLayout.slantingSize = 20
-        slantedLayout.itemSize = 175
         
         // Performs asynchronous REST API call to load a YouTube content feed
         contentFeed.loadVideoFeed { (error) in
@@ -55,6 +50,7 @@ class FeedCollectionViewController: UICollectionViewController {
             // Ensure that UI operations are called on the main thread
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView?.reloadData()
+                self?.slantedLayout.invalidateLayout()
             }
         }
     }
@@ -108,9 +104,7 @@ class FeedCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    // MARK: UIScrollViewDelegate
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func updateParallax() {
         guard let collectionView = self.collectionView else {
             return
         }
@@ -121,12 +115,23 @@ class FeedCollectionViewController: UICollectionViewController {
         
         // Create parallax effect by calculating image offset during scrolling
         for parallaxCell in visibleCells {
-            let yOffset = ((collectionView.contentOffset.y - parallaxCell.frame.origin.y) / parallaxCell.imageHeight) * yOffsetSpeed
-            
-            let xOffset = ((collectionView.contentOffset.x - parallaxCell.frame.origin.x) / parallaxCell.imageWidth) * xOffsetSpeed
-            
-            parallaxCell.offsetImage(CGPoint(x: xOffset,y :yOffset))
+            parallaxCell.updateParallax(offset: collectionView.contentOffset)
         }
+    }
+    
+    // MARK: UIScrollViewDelegate
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.updateParallax()
+    }
+}
+
+extension FeedCollectionViewController: CollectionViewDelegateSlantedLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: CollectionViewSlantedLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGFloat {
+        return collectionViewLayout.scrollDirection == .vertical ? 175 : 346
     }
 }
 

@@ -14,9 +14,7 @@
 		7A1A47AC2030CFDC00CB9468 /* YouTubeFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A47AB2030CFDC00CB9468 /* YouTubeFeedTests.swift */; };
 		7A1A47C52030D85800CB9468 /* ContentFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A47C42030D85800CB9468 /* ContentFeed.swift */; };
 		7A1A47CB2031334A00CB9468 /* VideoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A47CA2031334A00CB9468 /* VideoDetailViewController.swift */; };
-		7A1A47CD2031337600CB9468 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A47CC2031337600CB9468 /* FeedViewController.swift */; };
 		7A1A47D02031F6F700CB9468 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A47CF2031F6F700CB9468 /* UIImageView+Download.swift */; };
-		7A1A47D22032308D00CB9468 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A47D12032308D00CB9468 /* FeedTableViewCell.swift */; };
 		7A1A47D52032388000CB9468 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A47D42032388000CB9468 /* Feed.swift */; };
 		7A1A47D72032389800CB9468 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A47D62032389800CB9468 /* Video.swift */; };
 		7A1A47D92032392300CB9468 /* MediaId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A1A47D82032392300CB9468 /* MediaId.swift */; };
@@ -66,9 +64,7 @@
 		7A1A47AD2030CFDC00CB9468 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A1A47C42030D85800CB9468 /* ContentFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFeed.swift; sourceTree = "<group>"; };
 		7A1A47CA2031334A00CB9468 /* VideoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoDetailViewController.swift; sourceTree = "<group>"; };
-		7A1A47CC2031337600CB9468 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		7A1A47CF2031F6F700CB9468 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
-		7A1A47D12032308D00CB9468 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		7A1A47D42032388000CB9468 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		7A1A47D62032389800CB9468 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		7A1A47D82032392300CB9468 /* MediaId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaId.swift; sourceTree = "<group>"; };
@@ -149,7 +145,6 @@
 		7A1A47C62030D89800CB9468 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7A1A47CC2031337600CB9468 /* FeedViewController.swift */,
 				7A8F0271203907C4009FAD8F /* FeedCollectionViewController.swift */,
 				7A1A47CA2031334A00CB9468 /* VideoDetailViewController.swift */,
 			);
@@ -168,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				7A1A47CF2031F6F700CB9468 /* UIImageView+Download.swift */,
-				7A1A47D12032308D00CB9468 /* FeedTableViewCell.swift */,
 				7A8F027C20393910009FAD8F /* FeedCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -317,7 +311,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A1A47C52030D85800CB9468 /* ContentFeed.swift in Sources */,
-				7A1A47D22032308D00CB9468 /* FeedTableViewCell.swift in Sources */,
 				7A8F026F2038F946009FAD8F /* YouTubePlayer.swift in Sources */,
 				7A1A47D92032392300CB9468 /* MediaId.swift in Sources */,
 				7A8F0272203907C4009FAD8F /* FeedCollectionViewController.swift in Sources */,
@@ -325,7 +318,6 @@
 				7A1A47D52032388000CB9468 /* Feed.swift in Sources */,
 				7A1A47D02031F6F700CB9468 /* UIImageView+Download.swift in Sources */,
 				7A1A47D72032389800CB9468 /* Video.swift in Sources */,
-				7A1A47CD2031337600CB9468 /* FeedViewController.swift in Sources */,
 				7A8F027D20393910009FAD8F /* FeedCollectionViewCell.swift in Sources */,
 				7A1A47DB2032394900CB9468 /* Thumbnail.swift in Sources */,
 				7A1A47CB2031334A00CB9468 /* VideoDetailViewController.swift in Sources */,
