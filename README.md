@@ -34,5 +34,5 @@ This project makes use of [CollectionViewSlantedLayout](https://github.com/Carth
 
 ## License
 
-**YouTube Feed Example** is available under the MIT license. See the LICENSE file for more info.
+**YouTube Feed Example** is available under the [MIT license](https://opensource.org/licenses/MIT).
 
