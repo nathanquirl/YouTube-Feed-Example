@@ -17,7 +17,7 @@
 
 ## Dependencies
 
-Uses [CollectionViewSlantedLayout](https://github.com/yacir/CollectionViewSlantedLayout) and [YouTubePlayer](https://github.com/gilesvangruisen/Swift-YouTube-Player) which can be installed by running Carthage in the project directory
+Uses [CollectionViewSlantedLayout](https://github.com/yacir/CollectionViewSlantedLayout) and [YouTubePlayer](https://github.com/gilesvangruisen/Swift-YouTube-Player) which can be installed by running Carthage in the project directory. Carthage can be installed from [here](https://github.com/Carthage/Carthage) .
 
 ```terminal
 update --platform iOS
