@@ -121,7 +121,6 @@
 		7A1A47952030CFDB00CB9468 /* YouTubeFeed */ = {
 			isa = PBXGroup;
 			children = (
-				7A8F026B2038F946009FAD8F /* Third Party */,
 				7A1A47D32032384D00CB9468 /* Model */,
 				7A1A47C72030D8A800CB9468 /* Content Management */,
 				7A1A47C62030D89800CB9468 /* View Controllers */,
@@ -181,13 +180,6 @@
 				7A1A47D42032388000CB9468 /* Feed.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		7A8F026B2038F946009FAD8F /* Third Party */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Third Party";
 			sourceTree = "<group>";
 		};
 		7A8F0273203908D0009FAD8F /* Frameworks */ = {

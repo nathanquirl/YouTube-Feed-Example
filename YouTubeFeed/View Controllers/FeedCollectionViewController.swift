@@ -16,8 +16,8 @@ class FeedCollectionViewController: UICollectionViewController {
     // MARK: - Properties
     let slantedLayout = CollectionViewSlantedLayout()
         
-    // This is used to process and retrieve a YouTube channel feed
-    // Performs a aynchronous REST API call internally
+    /// This is used to process and retrieve a YouTube channel feed
+    /// Performs a aynchronous REST API call internally
     let contentFeed : ContentFeed = ContentFeed()
     
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class FeedCollectionViewController: UICollectionViewController {
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    /// Prepares the detail view to display currently selected video info
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         // Prepare detail view controller by setting it's video property using current table view selection

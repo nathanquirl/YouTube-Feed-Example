@@ -9,24 +9,24 @@
 import UIKit
 
 struct Thumbnail: Codable {
-    // Height of thumbnail image
+    /// Height of thumbnail image
     var height: Int?
     
-    // Width of thumbnail image
+    /// Width of thumbnail image
     var width: Int?
     
-    // URL location of thumbnail image
+    /// URL location of thumbnail image
     var url: String?
 }
 
 struct Thumbnails: Codable {
-    // YouTube feeds usually store the smallest thumbnail in the "default" property
+    /// YouTube feeds usually store the smallest thumbnail in the "default" property
     var defaultSize: Thumbnail?
     
-    // Next larger size to default
+    /// Next larger size to default
     var medium: Thumbnail?
     
-    // Largest thumbnail size available from feed
+    /// Largest thumbnail size available from feed
     var high: Thumbnail?
     
     // MARK: - Custom coding keys

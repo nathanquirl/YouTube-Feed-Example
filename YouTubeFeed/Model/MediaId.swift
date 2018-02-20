@@ -9,9 +9,9 @@
 import UIKit
 
 struct MediaId: Codable {
-    // Type of content; ie: youtube/video
+    /// Type of content; ie: youtube/video
     var kind: String?
     
-    // Unique identifier used for embedding into video links
+    /// Unique identifier used for embedding into video links
     var videoId: String?
 }

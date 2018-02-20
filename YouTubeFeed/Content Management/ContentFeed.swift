@@ -20,23 +20,23 @@ class ContentFeed: NSObject {
     
     // MARK: - Constants
     
-    // Default key for locating the API key from the main app bundle
-    // This value should be set in the plist for the build target and is required for
-    // using the YouTube REST API
+    /// Default key for locating the API key from the main app bundle
+    /// This value should be set in the plist for the build target and is required for
+    /// using the YouTube REST API
     public let feedBundleKey = "YouTube API Key"
     
-    // Example channel link for displaying a video feed;
-    // This can be changed to display a different channel feed
+    /// Example channel link for displaying a video feed;
+    /// This can be changed to display a different channel feed
     public let defaultChannelKey = "UCz35fFb-aMFu5f-V6D-065w"
     
     // MARK: - Properties
     
-    // Once a feed has been successfully loaded, it is cached into this property
+    /// Once a feed has been successfully loaded, it is cached into this property
     var contentFeed: Feed = Feed()
     
-    // Generic method to provide the YouTube API key for REST calls. This can be overridden
-    // to provide alternate methods for retrieving the key. ie. from a server
-    // The default implementation pulls the key from the main bundle plist
+    /// Generic method to provide the YouTube API key for REST calls. This can be overridden
+    /// to provide alternate methods for retrieving the key. ie. from a server
+    /// The default implementation pulls the key from the main bundle plist
     func getAPIKey() -> String {
 
         // Ideally, this would be retrieved from a server but is pulled from the bundle for now
@@ -59,11 +59,9 @@ class ContentFeed: NSObject {
         return defaultChannelKey
     }
     
-    // Format a REST API request for retrieving a list of recent videos using
-    // the specified channel
-    // Parameters:
-    // channel: - unique id used as a resource locater for a channel feed.
-    //
+    /// Format a REST API request for retrieving a list of recent videos using
+    /// the specified channel
+    /// - Parameter channel: Unique id used as a resource locater for a channel feed.
     func formatChannelRequest(channel: String) -> String {
         
         // An API key is required for this REST call
@@ -82,13 +80,11 @@ class ContentFeed: NSObject {
         return contentFeed.items?[atIndex]
     }
     
-    // Performs rest API call to retrieve recent videos using the current
-    // channel key
-    // Parameters:
-    // completion: - completion block called after asynchronous loading
-    //               Passes non nil error value if load was unsuccessful
-    //
-    func loadVideoFeed(completion: @escaping (Error?) -> Void) {
+    /// Performs rest API call to retrieve recent videos using the current
+    /// channel key
+    /// - Parameter completion: Block called after asynchronous loading
+    ///               Passes non nil error value if load was unsuccessful
+    func loadVideoFeed(_ completion: @escaping (Error?) -> Void) {
 
         // Get formatted REST API call as a string
         let formattedURL = formatChannelRequest(channel: getChannelKey())

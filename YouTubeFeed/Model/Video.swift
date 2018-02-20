@@ -9,46 +9,47 @@
 import UIKit
 
 struct Snippet: Codable {
-    // Main title of content
+    /// Main title of content
     var title: String?
     
-    // Usually a short about section for a video
-    // Entire description is not usually available in this property and may appear truncated
+    /// Usually a short about section for a video
+    /// Entire description is not usually available in this property and may appear truncated
     var description: String?
     
-    // Assortment of video thumbnail images in multiple sizes
+    /// Assortment of video thumbnail images in multiple sizes
     var thumbnails: Thumbnails?
 }
 
 struct Video: Codable {
-    // Structure for identifying type of content and for locating this video resource
+    /// Structure for identifying type of content and for locating this video resource
     var id: MediaId?
     
-    // Uses YouTube naming convention; This contains detail information about this content
+    /// Uses YouTube naming convention; This contains detail information about this content
     var snippet: Snippet?
     
     // MARK: - Convenience methods
     
-    // Convenience accessor for retrieving default size from child structures
+    /// Convenience accessor for retrieving default size from child structures
     func smallThumbnail() -> Thumbnail? {
         return snippet?.thumbnails?.defaultSize
     }
     
-    // Convenience accessor for retrieving largest size from child structures
+    /// Convenience accessor for retrieving largest size from child structures
     func largeThumbnail() -> Thumbnail? {
         return snippet?.thumbnails?.high
     }
     
-    // Convenience accessor for retrieving the video summary; May be truncated for brevity
+    /// Convenience accessor for retrieving the video summary; May be truncated for brevity
     func videoDescription() -> String? {
         return snippet?.description
     }
     
-    // Convenience accessor for retrieving the main video title
+    /// Convenience accessor for retrieving the main video title
     func title() -> String? {
         return snippet?.title
     }
     
+    /// YouTube formatted embedded video link
     func videoUrl() -> URL? {
         // Formats an embedded YouTube video link, suitable for using from which an HTML iframe
         if let videoId = id?.videoId {
@@ -59,6 +60,7 @@ struct Video: Codable {
         return nil
     }
     
+    /// Formats an embedded YouTube player string for display in an HTML display
     func videoEmbedCode() -> String? {
         
         // Fprmatted HTML to display an embedded YouTube link.
