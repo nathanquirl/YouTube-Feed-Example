@@ -75,8 +75,6 @@ private extension URL {
 public func videoIDFromYouTubeURL(_ videoURL: URL) -> String? {
     if videoURL.pathComponents.count > 1 && (videoURL.host?.hasSuffix("youtu.be"))! {
         return videoURL.pathComponents[1]
-    } else if videoURL.pathComponents.contains("embed") {
-        return videoURL.pathComponents.last
     }
     return videoURL.queryStringComponents()["v"] as? String
 }
@@ -85,7 +83,6 @@ public func videoIDFromYouTubeURL(_ videoURL: URL) -> String? {
 open class YouTubePlayerView: UIView, UIWebViewDelegate {
     
     public typealias YouTubePlayerParameters = [String: AnyObject]
-    public var baseURL = "about:blank"
     
     fileprivate var webView: UIWebView!
     
@@ -131,8 +128,6 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
     
     fileprivate func buildWebView(_ parameters: [String: AnyObject]) {
         webView = UIWebView()
-        webView.isOpaque = false
-        webView.backgroundColor = UIColor.clear
         webView.allowsInlineMediaPlayback = true
         webView.mediaPlaybackRequiresUserAction = false
         webView.delegate = self
@@ -212,7 +207,7 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
         evaluatePlayerCommand("nextVideo()")
     }
     
-    @discardableResult fileprivate func evaluatePlayerCommand(_ command: String) -> String? {
+    fileprivate func evaluatePlayerCommand(_ command: String) -> String? {
         let fullCommand = "player." + command + ";"
         return webView.stringByEvaluatingJavaScript(from: fullCommand)
     }
@@ -232,11 +227,11 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
         let htmlString = rawHTMLString.replacingOccurrences(of: "%@", with: jsonParameters)
         
         // Load HTML in web view
-        webView.loadHTMLString(htmlString, baseURL: URL(string: baseURL))
+        webView.loadHTMLString(htmlString, baseURL: URL(string: "about:blank"))
     }
     
     fileprivate func playerHTMLPath() -> String {
-        return Bundle(for: YouTubePlayerView.self).path(forResource: "YTPlayer", ofType: "html")!
+        return Bundle(for: self.classForCoder).path(forResource: "YTPlayer", ofType: "html")!
     }
     
     fileprivate func htmlStringWithFilePath(_ path: String) -> String? {
@@ -286,7 +281,7 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
             let jsonData = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
             
             // Succeeded
-            return NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as String?
+            return NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as? String
             
         } catch let jsonError {
             

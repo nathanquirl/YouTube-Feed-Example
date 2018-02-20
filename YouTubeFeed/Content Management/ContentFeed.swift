@@ -23,11 +23,11 @@ class ContentFeed: NSObject {
     // Default key for locating the API key from the main app bundle
     // This value should be set in the plist for the build target and is required for
     // using the YouTube REST API
-    let feedBundleKey = "YouTube API Key"
+    public let feedBundleKey = "YouTube API Key"
     
     // Example channel link for displaying a video feed;
     // This can be changed to display a different channel feed
-    let defaultChannelKey = "UCz35fFb-aMFu5f-V6D-065w" // UCjnYk44Aj9E634TPucpIXnQ
+    public let defaultChannelKey = "UCz35fFb-aMFu5f-V6D-065w"
     
     // MARK: - Properties
     

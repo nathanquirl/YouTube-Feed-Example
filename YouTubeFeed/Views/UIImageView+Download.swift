@@ -10,12 +10,13 @@ import UIKit
 
 extension UIImageView {
     // Convenience method for simplifying asyncronous image loading
-    public func download(url: URL) {
+    public func download(url: URL, completion: @escaping (UIImage?) -> Void = {_ in }) {
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
             
             if error != nil {
                 print("Unable to download image at url: \(url)")
+                completion(nil)
                 return
             }
             
@@ -23,6 +24,7 @@ extension UIImageView {
                 // Must be called on the main thread to avoid locking the UI
                 DispatchQueue.main.async {
                     self.image = UIImage(data: data)
+                    completion(self.image)
                 }
             }
             

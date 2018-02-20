@@ -8,10 +8,12 @@
 
 import XCTest
 @testable import YouTubeFeed
+//@testable import CollectionViewSlantedLayout
 
 class YouTubeFeedTests: XCTestCase {
     
     var exampleFeed: Data?
+    var codableFeed: Feed?
     
     override func setUp() {
         super.setUp()
@@ -26,6 +28,8 @@ class YouTubeFeedTests: XCTestCase {
         exampleFeed = try? Data(contentsOf: url!)
         
         XCTAssert(exampleFeed != nil)
+        
+        codableFeed = try? JSONDecoder().decode(Feed.self, from: exampleFeed!)
     }
 
     func testJSONModel() {
@@ -98,6 +102,9 @@ class YouTubeFeedTests: XCTestCase {
             let video = feed.video(atIndex: i)
             
             XCTAssert(video != nil)
+            
+            XCTAssert(!(video?.videoEmbedCode()?.isEmpty)!)
+            XCTAssert(video?.videoUrl() != nil)
         }
     }
     
@@ -111,6 +118,17 @@ class YouTubeFeedTests: XCTestCase {
         XCTAssert(!apiKey.isEmpty)
     }
     
+    func testVideoProperties() {
+        
+        let snippet = Snippet(title: "test-title", description: "test-description", thumbnails: nil)
+        var video = Video(id: nil, snippet: snippet)
+        
+        XCTAssert(video.videoDescription() == "test-description")
+        XCTAssert(video.title() == "test-title")
+        
+        video.snippet = snippet
+    }
+    
     func testChannelKey() {
         let feed = ContentFeed()
         
@@ -118,6 +136,95 @@ class YouTubeFeedTests: XCTestCase {
         
         // Channel key should be specified prior to using REST API
         XCTAssert(!channel.isEmpty)
+    }
+    
+    func testChannelRequest() {
+        let feed = ContentFeed()
+        
+        let request = feed.formatChannelRequest(channel: "TEST")
+        
+        // Channel key should be specified prior to using REST API
+        XCTAssert(!request.isEmpty)
+    }
+    
+    func testImageViewExtension() {
+        let imageView = UIImageView()
+        
+        let testBundle = Bundle(for: type(of: self))
+        let url = testBundle.url(forResource:"test-image", withExtension: "jpg")!
+
+        imageView.download(url: url, completion: { (image) in
+            XCTAssert(image != nil)
+        })
+    }
+    
+    func testParallax() {
+        let cell = FeedCollectionViewCell()
+        
+        let testBundle = Bundle(for: type(of: self))
+        let file = testBundle.path(forResource: "test-image", ofType: "jpg")!
+        let image = UIImage(contentsOfFile: file)
+        
+        cell.imageView = UIImageView()
+        cell.imageView.image = image
+        
+        cell.updateParallax(offset: CGPoint(x: 30, y: 40))
+        
+        XCTAssert(cell.imageView.frame.origin.x != 0.0)
+        XCTAssert(cell.imageView.frame.origin.y != 0.0)
+    }
+    
+    func testFeedCollectionCell() {
+        
+        let cell = FeedCollectionViewCell()
+        
+        let testBundle = Bundle(for: type(of: self))
+        let file = testBundle.path(forResource: "test-image", ofType: "jpg")!
+        let image = UIImage(contentsOfFile: file)
+        
+        cell.imageView = UIImageView()
+        cell.imageView.image = image
+        
+        XCTAssert(cell.imageHeight == image?.size.height)
+        XCTAssert(cell.imageWidth == image?.size.width)
+        
+        cell.offsetImage(offset: CGPoint(x: 10.0, y: 20.0))
+        
+        XCTAssert(cell.imageView.frame.origin.x == 10.0)
+        XCTAssert(cell.imageView.frame.origin.y == 20.0)
+    }
+    
+    func testFeedCollectionViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        let controller = storyboard.instantiateViewController(withIdentifier: "FeedCollectionViewController") as! FeedCollectionViewController
+        
+        // Inject test feed
+        controller.contentFeed.contentFeed = codableFeed!
+
+        let sections = controller.numberOfSections(in: controller.collectionView!)
+        
+        XCTAssert(sections == 1)
+        
+        let cell = controller.collectionView(controller.collectionView!, cellForItemAt: IndexPath(row: 0, section: 0)) as! FeedCollectionViewCell
+
+        XCTAssert(!(cell.mediaTitle?.text?.isEmpty)!)
+    }
+    
+    func testFeedDetailViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        let controller = storyboard.instantiateViewController(withIdentifier: "VideoDetailViewController") as! VideoDetailViewController
+        
+        // Inject test feed
+        controller.videoContentInfo = codableFeed?.items?.first
+        
+        // Call viewDidLoad
+        let _ = controller.view
+        
+        XCTAssert(!(controller.videoTitleLabel.text?.isEmpty)!)
+        
+        controller.videoDescriptionLabel.sizeToFit()
     }
     
     func measureFeedParsing() {

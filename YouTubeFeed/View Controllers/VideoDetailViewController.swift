@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import YouTubePlayer
 
 class VideoDetailViewController: UIViewController {
 
@@ -36,12 +37,5 @@ class VideoDetailViewController: UIViewController {
                 playerView.loadVideoID(videoId)
             }
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        // Update description here to ensure that it top justifies to the title block
-        videoDescriptionLabel.sizeToFit()
     }
 }
