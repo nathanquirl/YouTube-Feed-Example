@@ -22,6 +22,11 @@ Uses [CollectionViewSlantedLayout](https://github.com/yacir/CollectionViewSlante
 ```terminal
 update --platform iOS
 ```
+## Usage
+
+You may need a YouTube API key to run the example project. An API key can be obtained from the [Google Developer Console](https://console.developers.google.com). The API key will then need to be set in the plist for the key "YouTube API Key"
+
+Once the key is setup, you can change the defaultChannelKey property in the ContentFeed.swift file to display other channels.
 
 ## Author
 
