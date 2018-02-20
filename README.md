@@ -29,7 +29,7 @@ Nathan Quirl
 
 ## Acknowledgement
 
-This project makes use of [CollectionViewSlantedLayout](https://github.com/Carthage/Carthage) and [YouTubePlayer](https://github.com/Carthage/Carthage
+This project makes use of [CollectionViewSlantedLayout](https://github.com/yacir/CollectionViewSlantedLayout) and [YouTubePlayer](https://github.com/gilesvangruisen/Swift-YouTube-Player)
 
 
 ## License
