@@ -3,7 +3,7 @@
 <p align="center">
 <img src="https://img.shields.io/badge/Swift-4.0-orange.svg" alt="Swift 4.0"/>
 <img src="https://img.shields.io/badge/Carthage-✔-blue.svg" alt="Carthage compatible"/>
-<img src="https://img.shields.io/badge/SPM-✔-blue.svg" alt="SMP ready"/>
+<img src="https://img.shields.io/cocoapods/p/YBSlantedCollectionViewLayout.svg?style=flat"/>
 </a>
 </p>
 
@@ -17,7 +17,7 @@
 
 ## Dependencies
 
-Uses [CollectionViewSlantedLayout](https://github.com/Carthage/Carthage) and [YouTubePlayer](https://github.com/Carthage/Carthage which can be installed by running Carthage in the project directory
+Uses [CollectionViewSlantedLayout](https://github.com/yacir/CollectionViewSlantedLayout) and [YouTubePlayer](https://github.com/gilesvangruisen/Swift-YouTube-Player) which can be installed by running Carthage in the project directory
 
 ```terminal
 update --platform iOS
