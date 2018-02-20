@@ -12,16 +12,16 @@ import YouTubePlayer
 
 class VideoDetailViewController: UIViewController {
 
-    // Accepts a YouTube video id and plays it within the view
+    /// Accepts a YouTube video id and plays it within the view
     @IBOutlet var playerView: YouTubePlayerView!
     
-    // Displays video summary; Info may be truncated from feed
+    /// Displays video summary; Info may be truncated from feed
     @IBOutlet var videoDescriptionLabel: UILabel!
     
-    // Main video title
+    /// Main video title
     @IBOutlet var videoTitleLabel: UILabel!
     
-    // Video content information for display in this view
+    /// Video content information for display in this view
     var videoContentInfo: Video?
     
     override func viewDidLoad() {

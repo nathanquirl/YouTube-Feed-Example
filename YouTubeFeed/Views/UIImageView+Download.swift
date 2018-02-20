@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIImageView {
-    // Convenience method for simplifying asyncronous image loading
+    /// Convenience method for simplifying asyncronous image loading
     public func download(url: URL, completion: @escaping (UIImage?) -> Void = {_ in }) {
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
