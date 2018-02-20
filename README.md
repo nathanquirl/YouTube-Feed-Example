@@ -30,7 +30,7 @@ Once the key is setup, you can change the defaultChannelKey property in the Cont
 
 ## Author
 
-Nathan Quirl
+[Nathan Quirl](https://github.com/nathanquirl)
 
 ## Acknowledgement
 
